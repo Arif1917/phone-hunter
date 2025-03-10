@@ -10,13 +10,30 @@
 </head>
 <body>
     <header>
-
+      <h1 class="uppercase text-3xl font-semibold text-center">phone hunting</h1>
     </header>
-    <main>
+    <main class="container mx-auto mt-6">
+     <section>
+        <div class="text-center bg-gray-200 p-4 rounded-xl">
+            <input id="input-field" type="text" placeholder="Type here" class="input" />
+            <button onclick="handleButton()" class="btn btn-info">Search</button>
+        </div>
+        
+     </section>
+        <!-- search result -->
+     <section >
+        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-2 rounded-lg">
+            
+        </div>
 
+        <div id="show-all-container" class="hidden text-center">
+            <button class="btn btn-accent">Accent</button>
+        </div>
+     </section>
     </main>
     <footer>
 
     </footer>
+    <script src="js/phone.js"></script>
 </body>
 </html>

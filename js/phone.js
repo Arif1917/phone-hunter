@@ -1,27 +1,27 @@
-const loadPhone = async (inputText)=>{
-const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
-const data = await res.json();
-const phones = data.data;
-displayPhones(phones)
+const loadPhone = async (inputText) => {
+  const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
+  const data = await res.json();
+  const phones = data.data;
+  displayPhones(phones)
 }
 
-const displayPhones = phones =>{
-    const phoneContainer = document.getElementById('phone-container');
-    phoneContainer.textContent = '';
-    const showAllContainer = document.getElementById('show-all-container');
-    if(phones.length>12){
-      showAllContainer.classList.remove('hidden')
-    }
-    else{
-        showAllContainer.classList.add('hidden')
-    }
-    phones = phones.slice(0,12);
-    console.log(phones)
-    phones.forEach(phone => {
-        console.log(phone)
+const displayPhones = phones => {
+  const phoneContainer = document.getElementById('phone-container');
+  phoneContainer.textContent = '';
+  const showAllContainer = document.getElementById('show-all-container');
+  if (phones.length > 12) {
+    showAllContainer.classList.remove('hidden')
+  }
+  else {
+    showAllContainer.classList.add('hidden')
+  }
+  phones = phones.slice(0, 12);
+  console.log(phones)
+  phones.forEach(phone => {
+    console.log(phone)
     const phoneCard = document.createElement('div');
-    phoneCard.classList=('card bg-gray-100 p-3 shadow-sm')
-    phoneCard.innerHTML=`
+    phoneCard.classList = ('card bg-gray-100 p-3 shadow-sm')
+    phoneCard.innerHTML = `
     <figure>
                   <img
                     src="${phone.image}" />
@@ -36,15 +36,28 @@ const displayPhones = phones =>{
                 </div>
     `;
     phoneContainer.appendChild(phoneCard)
-    });
-    
+  });
+  toggleHandleButton(false)
+
 }
 
-const handleButton =()=>{
- const inputField = document.getElementById('input-field');
- const inputText = inputField.value;
-//  inputField.value =' ';
- console.log(inputText)
- loadPhone(inputText);
+const handleButton = () => {
+  toggleHandleButton(true)
+  const inputField = document.getElementById('input-field');
+  const inputText = inputField.value;
+  inputField.value = ' ';
+  // console.log(inputText)
+  loadPhone(inputText);
+}
+
+const toggleHandleButton = (isLoading) => {
+  const loadingSpinner = document.getElementById('loading-spinner');
+  if (isLoading) {
+    loadingSpinner.classList.remove('hidden')
+  }
+  else {
+    loadingSpinner.classList.add('hidden')
+  }
+
 }
 // loadPhone()

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,38 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>phone-hunter</title>
 </head>
+
 <body>
     <header>
-      <h1 class="uppercase text-3xl font-semibold text-center">phone hunting</h1>
+        <h1 class="uppercase text-3xl font-semibold text-center">phone hunting</h1>
     </header>
     <main class="container mx-auto mt-6">
-     <section>
-        <div class="text-center bg-gray-200 p-4 rounded-xl">
-            <input id="input-field" type="text" placeholder="Type here" class="input" />
-            <button onclick="handleButton()" class="btn btn-info">Search</button>
-        </div>
-        
-     </section>
-        <!-- search result -->
-     <section >
-        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-2 rounded-lg">
-            
-        </div>
+        <section>
+            <div class="text-center bg-gray-200 p-4 rounded-xl">
+                <input id="input-field" type="text" placeholder="Type here" class="input" />
+                <button onclick="handleButton()" class="btn btn-info">Search</button>
+            </div>
 
-        <div id="show-all-container" class="hidden text-center">
-            <button class="btn btn-accent">Accent</button>
-        </div>
-     </section>
+        </section>
+        <!-- search result -->
+        <section>
+            <div id="loading-spinner" class="text-center hidden">
+                <span class="loading loading-spinner loading-xl my-14 "></span>
+            </div>
+
+            <div id="phone-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-2 rounded-lg">
+
+            </div>
+
+            <div id="show-all-container" class="hidden text-center py-11">
+                <button class="btn btn-accent">Show All</button>
+            </div>
+        </section>
     </main>
     <footer>
 
     </footer>
     <script src="js/phone.js"></script>
 </body>
+
 </html>

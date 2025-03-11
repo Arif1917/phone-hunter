@@ -8,14 +8,14 @@ const loadPhone = async (inputText) => {
 const displayPhones = phones => {
   const phoneContainer = document.getElementById('phone-container');
   phoneContainer.textContent = '';
-  const showAllContainer = document.getElementById('show-all-container');
-  if (phones.length > 12) {
-    showAllContainer.classList.remove('hidden')
-  }
-  else {
-    showAllContainer.classList.add('hidden')
-  }
-  phones = phones.slice(0, 12);
+  // const showAllContainer = document.getElementById('show-all-container');
+  // if (phones.length > 12) {
+  //   showAllContainer.classList.remove('hidden')
+  // }
+  // else {
+  //   showAllContainer.classList.add('hidden')
+  // }
+  // phones = phones.slice(0, 12);
   console.log(phones)
   phones.forEach(phone => {
     console.log(phone)
@@ -31,7 +31,7 @@ const displayPhones = phones => {
                   <p>${phone.slug}</p>
                   <p>Brand: ${phone.brand}</p>
                   <div class="card-actions mt-5 justify-center w-full">
-                    <button class="btn btn-primary ">Buy Now</button>
+                    <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-primary ">Buy Now</button>
                   </div>
                 </div>
     `;
@@ -39,6 +39,33 @@ const displayPhones = phones => {
   });
   toggleHandleButton(false)
 
+}
+
+const handleShowDetails = async (id)=>{
+  console.log('click',id)
+  // single data loaded  
+ const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+ const data = await res.json();
+ const phone = data.data;
+//  console.log(phone)
+ showPhoneDetails(phone)
+}
+
+const showPhoneDetails= (phone)=>{
+  console.log(phone)
+  const showPhoneDetails =document.getElementById('show-phone-details-name');
+  showPhoneDetails.innerText=phone.name;
+  const phoneDetailsContainer = document.getElementById('phone-details-container');
+  phoneDetailsContainer.innerHTML=`
+  <img src="${phone.image}" alt="">
+  <p>${phone.brand}</p>
+  <p>Storage:${phone.mainFeatures.storage}</p>
+  <p>DisplaySize:${phone.mainFeatures.displaySize}</p>
+  <p>ReleaisingDate:${phone.releaseDate
+    }</p>
+  
+  `
+  my_modal_5.showModal(phone)
 }
 
 const handleButton = () => {
